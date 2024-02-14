@@ -180,18 +180,24 @@ module test;
   timeunit 1ns;
   timeprecision 100ps;
 
-  logic start, done1, done2, done3, done4;
-  async_fifo_test #(20, 12, 1) test1(start, done1);
-  async_fifo_test #(12, 20, 2) test2(done1, done2,);
-  async_fifo_test #(70, 20, 3) test3(done2, done3);
-  async_fifo_test #(20, 70, 4) test4(done3, done4);
+  parameter N_TESTS = 4;
+
+  logic flags [0:N_TESTS];
+  localparam int r_clks [N_TESTS] = {20, 12, 70, 20};
+  localparam int w_clks [N_TESTS] = {12, 20, 20, 70};
+  genvar i;
+  generate
+    for (i = 0; i < N_TESTS; i++) begin
+      async_fifo_test #(r_clks[i], w_clks[i], i+1) test (flags[i], flags[i+1]);
+    end
+  endgenerate
 
   initial begin
-    start = 0;
+    flags[0] = 0;
     #1
-    start = 1;
+    flags[0] = 1;
 
-    @ (posedge done4)
+    @ (posedge flags[N_TESTS])
     $display ("ALL FIFO TESTS PASSED");
     $finish;
   end
