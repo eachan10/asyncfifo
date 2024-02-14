@@ -1,4 +1,4 @@
-// Full 
+// Full asynchronous fifo module
 module async_fifo #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
   input logic [7:0] w_data,
   input logic w_en,
@@ -21,6 +21,8 @@ module async_fifo #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
   logic [3:0] w_ptr, sync_w_ptr;
   logic write;
 
+  // write wire goes into memory module to disable writing to memory
+  // when the buffer is full
   always_comb begin
     write <= (w_en & ~full);
   end

@@ -1,3 +1,4 @@
+// Double flip flop sychronizer for gray codes
 module sync #(parameter ADDR_SIZE=3) (
   input logic [ADDR_SIZE:0] ptr_in,
   input logic clk,
@@ -9,6 +10,8 @@ module sync #(parameter ADDR_SIZE=3) (
 
   logic [ADDR_SIZE:0] ptr;
 
+  // move values to the next flip flop every clock cycle
+  // or asynchronous reset
   always_ff @ (posedge clk or negedge rst) begin
     if (!rst) begin
       ptr_out <= 'b0;
