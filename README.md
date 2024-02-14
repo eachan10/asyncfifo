@@ -20,3 +20,12 @@ test reading and writing at the same time.
 
 - almost_full and full flags lag behind by 3 w_clk cycles from when read happens
 - almost_empty and empty flags lag behind by 3 r_clk cycles from when write happens
+
+
+## TODO
+[x] Parameterize everything
+[ ] make almost full and almost empty flags based on parameters
+[ ] comment
+    - 1 per block
+    - 1 per module
+[ ] synthesize
