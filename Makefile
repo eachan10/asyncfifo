@@ -10,9 +10,6 @@ r_empty: r_empty_test.sv r_empty.sv
 w_full: w_full_test.sv w_full.sv
 	xrun $^
 
-almost: almost_test.sv almost.sv
-	xrun $^
-
 fifo: fifo_test.sv fifo.sv mem.sv sync.sv r_empty.sv w_full.sv
 	xrun $^
 
