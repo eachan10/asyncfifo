@@ -1,15 +1,15 @@
-module fifo_mem (
-  input logic [7:0] data,
-  input logic [2:0] w_addr,
-  input logic [2:0] r_addr,
+module fifo_mem #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
+  input logic [DATA_WIDTH-1:0] data,
+  input logic [ADDR_SIZE-1:0] w_addr,
+  input logic [ADDR_SIZE-1:0] r_addr,
   input logic w_en,
   input logic clk,
-  output logic [7:0] out
+  output logic [DATA_WIDTH-1:0] out
 );
   timeunit 1ns;
   timeprecision 100ps;
 
-  logic [7:0] mem [0:7];
+  logic [DATA_WIDTH-1:0] mem [0:MEM_SIZE-1];
 
   always_ff @ (posedge clk) begin
     if (w_en)

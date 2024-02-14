@@ -1,4 +1,4 @@
-module sync_fifo (
+module sync_fifo #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
   input logic [7:0] w_data,
   input logic w_en,
   input logic r_en,
@@ -24,24 +24,28 @@ module sync_fifo (
     write <= (w_en & ~full);
   end
 
-  fifo_mem mem (.data(w_data),
+  fifo_mem #(DATA_WIDTH, MEM_SIZE, ADDR_SIZE) mem
+               (.data(w_data),
                 .w_addr(w_addr),
                 .r_addr(r_addr),
                 .w_en(write),
                 .clk(w_clk),
                 .out(out));
 
-  sync w2r_sync (.ptr_in(w_ptr),
+  sync #(ADDR_SIZE) w2r_sync
+                (.ptr_in(w_ptr),
                  .clk(r_clk),
                  .rst(rst),
                  .ptr_out(sync_w_ptr));
 
-  sync r2w_sync (.ptr_in(r_ptr),
+  sync #(ADDR_SIZE) r2w_sync
+                (.ptr_in(r_ptr),
                  .clk(w_clk),
                  .rst(rst),
                  .ptr_out(sync_r_ptr));
 
-  w_full w_full (.r_ptr(sync_r_ptr),
+  w_full #(ADDR_SIZE) w_full
+                (.r_ptr(sync_r_ptr),
                  .w_en(w_en),
                  .rst(rst),
                  .clk(w_clk),
@@ -50,7 +54,8 @@ module sync_fifo (
                  .full(full),
                  .almost_full(almost_full));
   
-  r_empty r_empty (.w_ptr(sync_w_ptr),
+  r_empty #(ADDR_SIZE) r_empty
+                (.w_ptr(sync_w_ptr),
                  .r_en(r_en),
                  .rst(rst),
                  .clk(r_clk),

@@ -1,13 +1,13 @@
-module sync (
-  input logic [3:0] ptr_in,
+module sync #(parameter ADDR_SIZE=3) (
+  input logic [ADDR_SIZE:0] ptr_in,
   input logic clk,
   input logic rst,
-  output logic [3:0] ptr_out
+  output logic [ADDR_SIZE:0] ptr_out
 );
   timeunit 1ns;
   timeprecision 100ps;
 
-  logic [3:0] ptr;
+  logic [ADDR_SIZE:0] ptr;
 
   always_ff @ (posedge clk or negedge rst) begin
     if (!rst) begin
