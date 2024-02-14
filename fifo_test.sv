@@ -10,7 +10,7 @@ class Numbers;
   rand bit [7:0] numbers [16];
 endclass
 
-module sync_fifo_test (input logic start,
+module async_fifo_test (input logic start,
                        output logic done);
 
 parameter int R_CLK_PERIOD = 20;
@@ -30,7 +30,7 @@ logic rst = 1;
 logic empty, full, almost_empty, almost_full;
 Numbers arr;
 
-sync_fifo sync_fifo(.w_data(w_data), .out(out),
+async_fifo async_fifo(.w_data(w_data), .out(out),
                     .w_en(w_en), .r_en(r_en),
                     .rst(rst),
                     .r_clk(r_clk), .w_clk(w_clk),
@@ -181,10 +181,10 @@ module test;
   timeprecision 100ps;
 
   logic start, done1, done2, done3, done4;
-  sync_fifo_test #(20, 12, 1) test1(start, done1);
-  sync_fifo_test #(12, 20, 2) test2(done1, done2,);
-  sync_fifo_test #(70, 20, 3) test3(done2, done3);
-  sync_fifo_test #(20, 70, 4) test4(done3, done4);
+  async_fifo_test #(20, 12, 1) test1(start, done1);
+  async_fifo_test #(12, 20, 2) test2(done1, done2,);
+  async_fifo_test #(70, 20, 3) test3(done2, done3);
+  async_fifo_test #(20, 70, 4) test4(done3, done4);
 
   initial begin
     start = 0;

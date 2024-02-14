@@ -1,4 +1,5 @@
-module sync_fifo #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
+// Full 
+module async_fifo #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
   input logic [7:0] w_data,
   input logic w_en,
   input logic r_en,
