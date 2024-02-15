@@ -14,6 +14,8 @@ module w_full #(parameter ADDR_SIZE=3) (
   timeunit 1ns;
   timeprecision 100ps;
 
+  localparam MEM_SIZE = 1 << ADDR_SIZE;
+
   logic [ADDR_SIZE:0] w_bin;
   logic [ADDR_SIZE:0] w_bin_next;
   logic [ADDR_SIZE:0] w_gray_next;
@@ -58,9 +60,9 @@ module w_full #(parameter ADDR_SIZE=3) (
       almost_full_next = 1'b1;
     else begin
       if (w_bin_next > r_bin)
-        almost_full_next = (w_bin_next - r_bin) > 5;
+        almost_full_next = (w_bin_next - r_bin) > (MEM_SIZE - 3);
       else
-        almost_full_next = (r_bin - w_bin_next) > 5;
+        almost_full_next = (r_bin - w_bin_next) > (MEM_SIZE - 3);
     end
   end
 
