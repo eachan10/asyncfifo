@@ -60,9 +60,9 @@ module w_full #(parameter ADDR_SIZE=3) (
       almost_full_next = 1'b1;
     else begin
       if (w_bin_next > r_bin)
-        almost_full_next = (w_bin_next - r_bin) > (MEM_SIZE - 3);
+        almost_full_next = (w_bin_next - r_bin) >= (MEM_SIZE - (MEM_SIZE >> 2));
       else
-        almost_full_next = (r_bin - w_bin_next) > (MEM_SIZE - 3);
+        almost_full_next = (r_bin - w_bin_next) >= (MEM_SIZE - (MEM_SIZE >> 2));
     end
   end
 

@@ -14,6 +14,8 @@ module r_empty #(parameter ADDR_SIZE=3) (
   timeunit 1ns;
   timeprecision 100ps;
 
+  localparam MEM_SIZE = 1 << ADDR_SIZE;
+
   logic [ADDR_SIZE:0] r_bin;
   logic [ADDR_SIZE:0] r_bin_next;
   logic [ADDR_SIZE:0] r_gray_next;
@@ -59,9 +61,9 @@ module r_empty #(parameter ADDR_SIZE=3) (
     else begin
       if (r_bin_next > w_bin)
       // figure out what to do here
-        almost_empty_next = (r_bin_next - w_bin) < 4;
+        almost_empty_next = (r_bin_next - w_bin) <= ((MEM_SIZE >> 2) + 1);
       else
-        almost_empty_next = (w_bin - r_bin_next) < 4;
+        almost_empty_next = (w_bin - r_bin_next) <= ((MEM_SIZE >> 2) + 1);
     end
   end
 

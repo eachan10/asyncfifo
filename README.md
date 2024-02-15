@@ -24,7 +24,8 @@ test reading and writing at the same time.
 
 ## TODO
 - [x] Parameterize everything
-- [ ] make almost full and almost empty flags based on parameters
+- [x] make almost full and almost empty flags based on parameters
+    - currently sets flags about 25% to full or empty
 - [x] ifdef to customize memory
 - [x] comment
     - 1 per block
