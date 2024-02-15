@@ -1,5 +1,5 @@
 // Full asynchronous fifo module
-module async_fifo #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
+module async_fifo #(parameter DATA_WIDTH=8, ADDR_SIZE=3) (
   input logic [7:0] w_data,
   input logic w_en,
   input logic r_en,
@@ -27,7 +27,7 @@ module async_fifo #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
     write <= (w_en & ~full);
   end
 
-  fifo_mem #(DATA_WIDTH, MEM_SIZE, ADDR_SIZE) mem
+  fifo_mem #(DATA_WIDTH, ADDR_SIZE) mem
                (.data(w_data),
                 .w_addr(w_addr),
                 .r_addr(r_addr),
