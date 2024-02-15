@@ -1,7 +1,7 @@
 // Memory to store the buffer with synchronous write and asynchronous read
 // There is no reset because the read and write pointers should keep track
 // of when the memory is valid data.
-module fifo_mem #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
+module fifo_mem #(parameter DATA_WIDTH=8, ADDR_SIZE=3) (
   input logic [DATA_WIDTH-1:0] data,
   input logic [ADDR_SIZE-1:0] w_addr,
   input logic [ADDR_SIZE-1:0] r_addr,
@@ -12,6 +12,9 @@ module fifo_mem #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
   timeunit 1ns;
   timeprecision 100ps;
 
+  `ifdef VENDOR_RAM
+  `else
+  localparam MEM_SIZE = 1 << ADDR_SIZE;
   logic [DATA_WIDTH-1:0] mem [0:MEM_SIZE-1];
 
   // synchronous write at positive clock edge
@@ -24,5 +27,6 @@ module fifo_mem #(parameter DATA_WIDTH=8, MEM_SIZE=8, ADDR_SIZE=3) (
   always_comb begin
     out <= mem[r_addr];
   end
+  `endif
 
 endmodule
