@@ -23,10 +23,10 @@ test reading and writing at the same time.
 
 
 ## TODO
-[x] Parameterize everything
-[ ] make almost full and almost empty flags based on parameters
-[ ] ifdef to customize memory
-[x] comment
+- [x] Parameterize everything
+- [ ] make almost full and almost empty flags based on parameters
+- [x] ifdef to customize memory
+- [x] comment
     - 1 per block
     - 1 per module
-[ ] synthesize
+- [ ] synthesize
