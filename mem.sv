@@ -13,6 +13,9 @@ module fifo_mem #(parameter DATA_WIDTH=8, ADDR_SIZE=3) (
   timeprecision 100ps;
 
   `ifdef VENDOR_RAM
+  vendor_ram ram (.dout(out), .din(data),
+                  .waddr(w_addr), .raddr(r_addr),
+                  .wclken(clk), .clk(clk));
   `else
   localparam MEM_SIZE = 1 << ADDR_SIZE;
   logic [DATA_WIDTH-1:0] mem [0:MEM_SIZE-1];
