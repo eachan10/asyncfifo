@@ -32,3 +32,8 @@ test reading and writing at the same time.
     - 1 per module
 - [x] synthesize
 - [ ] maybe use clocking blocks for fifo_test
+
+
+I have an issue where when I open the gui and try to click the paths to ptr_in it crashes
+- I think it was fixed when I used get_pins for set_false_path
+- I believe it didn't correctly set false path when I didn't use get_pins for the ptr_in
