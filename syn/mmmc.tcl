@@ -104,9 +104,6 @@ create_constraint_mode -name functional_htnv -sdc_file { \
 create_constraint_mode -name functional_hthv -sdc_file { \
     ./constraints/ntnv.sdc
 }
-create_constraint_mode -name functional_ntnv -sdc_file { \
-    ./constraints/ntnv.sdc
-}
 
 create_analysis_view -name view_ltlv -constraint_mode functional_ltlv -delay_corner delay_corner_ltlv
 create_analysis_view -name view_ltnv -constraint_mode functional_ltnv -delay_corner delay_corner_ltnv
