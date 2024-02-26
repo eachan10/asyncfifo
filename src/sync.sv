@@ -1,5 +1,5 @@
 // Double flip flop sychronizer for gray codes
-module sync #(parameter ADDR_SIZE=3) (
+(* DONT_TOUCH = "yes" *) module sync #(parameter ADDR_SIZE=3) (
   input logic [ADDR_SIZE:0] ptr_in,
   input logic clk,
   input logic rst,
