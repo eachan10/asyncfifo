@@ -1,12 +1,12 @@
 // Full asynchronous fifo module
-module async_fifo #(parameter DATA_WIDTH=8, ADDR_SIZE=3) (
-  input logic [7:0] w_data,
+module async_fifo #(parameter DATA_WIDTH=16, ADDR_SIZE=8) (
+  input logic [DATA_WIDTH-1:0] w_data,
   input logic w_en,
   input logic r_en,
   input logic rst,
   input logic w_clk,
   input logic r_clk,
-  output logic [7:0] out,
+  output logic [DATA_WIDTH-1:0] out,
   output logic empty,
   output logic full,
   output logic almost_empty,
@@ -15,10 +15,10 @@ module async_fifo #(parameter DATA_WIDTH=8, ADDR_SIZE=3) (
   timeunit 1ns;
   timeprecision 100ps;
 
-  logic [2:0] w_addr;
-  logic [2:0] r_addr;
-  logic [3:0] r_ptr, sync_r_ptr;
-  logic [3:0] w_ptr, sync_w_ptr;
+  logic [ADDR_SIZE-1:0] w_addr;
+  logic [ADDR_SIZE-1:0] r_addr;
+  logic [ADDR_SIZE:0] r_ptr, sync_r_ptr;
+  logic [ADDR_SIZE:0] w_ptr, sync_w_ptr;
   logic write;
 
   // write wire goes into memory module to disable writing to memory
