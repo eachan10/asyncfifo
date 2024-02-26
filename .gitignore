@@ -5,3 +5,12 @@ xrun.history
 xrun.key
 *.log
 xvlog.pb
+OUTPUT
+logs
+lef/
+lib/
+fv/
+captables/
+async_fifo.db
+async_fifo.v
+*.tstamp

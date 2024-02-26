@@ -30,4 +30,5 @@ test reading and writing at the same time.
 - [x] comment
     - 1 per block
     - 1 per module
-- [ ] synthesize
+- [x] synthesize
+- [ ] maybe use clocking blocks for fifo_test
