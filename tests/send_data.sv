@@ -25,7 +25,7 @@ logic rst = 1;
 logic empty, full, almost_empty, almost_full;
 
 
-async_fifo async_fifo(.w_data(w_data), .out(out),
+async_fifo #(8, 3) async_fifo(.w_data(w_data), .out(out),
                     .w_en(w_en), .r_en(r_en),
                     .rst(rst),
                     .r_clk(r_clk), .w_clk(w_clk),
